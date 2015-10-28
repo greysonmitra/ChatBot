@@ -21,7 +21,7 @@ public class ChatbotController
 	}
 	public void start()
 	{
-		myDisplay.grabText("Hello " + myChatbot.getUserName());
+		myDisplay.showResponse("Hello " + myChatbot.getUserName());
 		chat();
 	}
 	
@@ -32,7 +32,7 @@ public class ChatbotController
 		{
 			if(myChatbot.contentChecker(conversation))
 			{
-				myDisplay.grabText("wow, you're interesting in " + myChatbot.getContent() + "," + " that's cool.");
+				myDisplay.showResponse("wow, you're interesting in " + myChatbot.getContent() + "," + " that's cool.");
 			}
 //			if(!myChatbot.quitChecker(conversation))
 //			{
