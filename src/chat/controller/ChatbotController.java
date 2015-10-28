@@ -22,5 +22,33 @@ public class ChatbotController
 	public void start()
 	{
 		myDisplay.grabText("Hello " + myChatbot.getUserName());
+		chat();
+	}
+	
+	private void chat()
+	{
+		String conversation = myDisplay.grabText("What's on your mind, honey?");
+		while(myChatbot.lengthChecker(conversation))
+		{
+			if(myChatbot.contentChecker(conversation))
+			{
+				myDisplay.grabText("wow, you're interesting in " + myChatbot.getContent() + "," + " that's cool.");
+			}
+//			if(!myChatbot.quitChecker(conversation))
+//			{
+//				conversation = myChatbot.processInput(conversation);
+//			}
+//			else
+//			{
+//				shutDown();
+//			}
+			
+			conversation = myDisplay.grabText(conversation);
+		}
+	}
+	
+	private void shutDown()
+	{
+		
 	}
 }
