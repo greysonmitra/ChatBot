@@ -92,10 +92,12 @@ public class Chatbot
 	{
 		boolean hasContent = false;
 		
-		if(currentInput.toLowerCase().contains(content.toLowerCase()))
-		{
-			hasContent = true;
-		}
+		
+			if(currentInput.toLowerCase().contains(content.toLowerCase()))
+			{
+				hasContent = true;
+			}
+				
 		return hasContent;
 	}
 	
@@ -120,9 +122,9 @@ public class Chatbot
 	{
 		boolean hasMeme = false;
 		
-		for(String currentMeme:memesList)
+		for(String meme:memesList)
 		{
-			if (currentMeme.equalsIgnoreCase(currentInput))
+			if (currentInput.toLowerCase().contains(meme.toLowerCase()))
 			{
 				hasMeme = true;
 			}

@@ -27,14 +27,18 @@ public class ChatbotController
 	
 	private void chat()
 	{
-		String conversation = myDisplay.grabText("What's on your mind, honey?");
+		String conversation = myDisplay.grabText("What's on your mind, honey? (I ain't gay tho)");
 		while(myChatbot.lengthChecker(conversation))
 		{
 			if(myChatbot.contentChecker(conversation))
 			{
 				myDisplay.showResponse("wow, you're interesting in " + myChatbot.getContent() + "," + " that's cool.");
 			}
-//			if(!myChatbot.quitChecker(conversation))
+			else if(myChatbot.memeChecker(conversation))
+			{
+				myDisplay.showResponse("Dank meme bro :)");
+			}
+//			else(!myChatbot.quitChecker(conversation))
 //			{
 //				conversation = myChatbot.processInput(conversation);
 //			}
