@@ -11,9 +11,9 @@ public class ChatView
 	
 	public String grabText(String displayText)
 	{
-//		JOptionPane.showInputDialog(null, displayText);
+		String returnedText = "";
 		
-		String returnedText = JOptionPane.showInputDialog(null, displayText) ;
+		returnedText = JOptionPane.showInputDialog(null, displayText) ;
 		
 		return returnedText;
 	}
