@@ -27,21 +27,26 @@ public class ChatbotController
 	
 	private void chat()
 	{
-		String conversation = myDisplay.grabText("What's on your mind, honey? (I ain't gay tho)");
+		String conversation = myDisplay.grabText("What's on ya mind, yo?");
 		while(myChatbot.lengthChecker(conversation))
 		{
-			if(myChatbot.contentChecker(conversation))
-			{
-				myDisplay.showResponse("wow, you're interesting in " + myChatbot.getContent());
-			}
-			else if(myChatbot.memeChecker(conversation))
-			{
-				myDisplay.showResponse("Dank meme bro :)");
-			}
-			else if(myChatbot.politicalTopicChecker(conversation))
-			{
-				myDisplay.showResponse("Talking politics is a bad idea...");
-			}
+			conversation = myDisplay.grabText(myChatbot.processConversation(conversation));
+			
+//			if(myChatbot.contentChecker(conversation))
+//			{
+//				myDisplay.showResponse("wow, you're interested in " + myChatbot.getContent());
+//			}
+//			else if(myChatbot.memeChecker(conversation))
+//			{
+//				myDisplay.showResponse("NOICE meme bro :)");
+//			}
+///			else if(myChatbot.politicalTopicChecker(conversation))
+///			{
+///				myDisplay.showResponse("Talking politics...");
+///			}
+			
+			
+			
 //			else(!myChatbot.quitChecker(conversation))
 //			{
 //				conversation = myChatbot.processInput(conversation);
@@ -50,13 +55,14 @@ public class ChatbotController
 //			{
 //				shutDown();
 //			}
+	
 			
-			conversation = myDisplay.grabText(conversation);
+//			conversation = myDisplay.grabText(conversation);
 		}
 	}
 	
 	private void shutDown()
 	{
-		
+//		myDisplay.displayText("Goodbye," + myChatbot.getUserName());
 	}
 }

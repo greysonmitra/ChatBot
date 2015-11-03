@@ -166,6 +166,51 @@ public class Chatbot
 		return hasMeme;
 	}
 	
+	public String processConversation(String currentInput)
+	{
+		String nextTopic = "Well what else do ya want to chat about mayn?";
+		int randomTopic = (int) (Math.random() * 5); //Generates a random number between 0 and 4.
+		
+		switch (randomTopic)
+		{
+		case 0:
+			if(memeChecker(currentInput))
+			{
+				nextTopic = "Quite the interesting meme sir. What else would you like to chat about?";
+			}
+			break;
+		case 1:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextTopic = "Quite the widely debated political topic you have there. Would you like to continue talking about politics?";
+			}
+			break;
+		case 2:
+			if(contentChecker(currentInput))
+			{
+				nextTopic = "Cool. What other musical things do you want to talk about?";
+			}
+			else
+			{
+				nextTopic = "failed content check";
+			}
+			break;
+		case 3:
+//			if(currentInput.length() > 40)
+//			{
+//				nextTopic = "You don't talk much. I stopped listening. Would you like to talk about something else?";
+//			}
+			break;
+		case 4:
+			nextTopic = "What do you know about the Bible?!?!";
+			break;
+		default:
+			break;
+		}
+		
+		return nextTopic;
+	}
+	
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * @return The username of the Chatbot.
