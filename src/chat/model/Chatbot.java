@@ -192,7 +192,7 @@ public class Chatbot
 			}
 			else
 			{
-				nextTopic = "failed content check";
+				nextTopic = "failed content check for content";
 			}
 			break;
 		case 3:
@@ -202,7 +202,7 @@ public class Chatbot
 //			}
 			break;
 		case 4:
-			nextTopic = "What do you know about the Bible?!?!";
+			nextTopic = "What do you know about the Russia?!?!";
 			break;
 		default:
 			break;
