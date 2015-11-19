@@ -3,10 +3,10 @@ package chat.model;
 import java.util.ArrayList;
 
 /**
- * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
+ * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part. NOT ANY MORE
  * of the project.
  * @author Greyson Mitra
- * @version 1.2 10/23/15 Completed the lengthChecker method. Fixed the Constructor and getter for userName. 
+ * @version 1.5 11/5/15 Completed multiple methods for checking various topics/
  */
 
 public class Chatbot
@@ -38,14 +38,17 @@ public class Chatbot
 		buildMemesList();
 		buildPoliticalTopicsList();
 	}
-	
+
+/**
+ * Initializes the Meme ArrayList with our meme objects.
+ */
 	private void buildMemesList()
 	{
 		this.memesList.add("cute animals");
 		this.memesList.add("doge");
 		this.memesList.add("Me gusta/Y U NO");
 		this.memesList.add("spodermen");
-		this.memesList.add("Rare Pepe"); //wOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+		this.memesList.add("Rare Pepe"); //wOOOOOOOOOOOOOOOOOOOOO
 		this.memesList.add("What if I told you...");
 		this.memesList.add("Aliens");
 		memesList.add("Unhelpful High School Teacher"); // can do it this way if ya want
@@ -53,6 +56,9 @@ public class Chatbot
 		
 	}
 	
+/**
+ * Initializes our Political topic ArrayList with our political topic objects	
+ */
 	private void buildPoliticalTopicsList()
 	{
 		this.politicalTopicsList.add("election");
@@ -103,7 +109,7 @@ public class Chatbot
 	}
 	
 	/**
-	 * Checks if the supplied String matches the content area for this Chatbot instance.
+	 * Checks if the supplied String matches the content area music or anything related.
 	 * @param currentInput The supplied String to be checked.
 	 * @return Whether it matches the content area.
 	 */
@@ -142,7 +148,7 @@ public class Chatbot
 	
 	
 	/**
-	 * Checks to see that the supplied String value is in the current memesList variable.
+	 * Checks to see that the supplied String value is in the current memesList variable. Specifically if it the name of one of our memes.
 	 * @param currentInput The supplied String to be checked.
 	 * @return Whether the supplied String is a recognized meme.
 	 */
@@ -166,6 +172,11 @@ public class Chatbot
 		return hasMeme;
 	}
 	
+	/**
+	 * Generates a random number, checks it with a switch/case block of code and then gives output based on that and the type of input supplied.
+	 * @param currentInput Takes in the current input given by the user
+	 * @return
+	 */
 	public String processConversation(String currentInput)
 	{
 		String nextTopic = "Well what else do ya want to chat about mayn?";
