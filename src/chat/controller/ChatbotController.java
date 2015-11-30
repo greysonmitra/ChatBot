@@ -12,7 +12,7 @@ public class ChatbotController
 {
 	private ChatView myDisplay;
 	private Chatbot myChatbot;
-	private ChatFrame chatFrame;
+	private ChatFrame baseFrame;
 
 	
 	/**
@@ -23,7 +23,7 @@ public class ChatbotController
 		myDisplay = new ChatView();
 		String userName = myDisplay.grabText("What is your name?");
 		myChatbot = new Chatbot(userName);
-		chatFrame = new ChatFrame(this);
+		baseFrame = new ChatFrame(this);
 	}
 	
 	/**
@@ -76,6 +76,22 @@ public class ChatbotController
 	
 	private void shutDown()
 	{
-//		myDisplay.displayText("Goodbye," + myChatbot.getUserName());
+		myDisplay.displayText("Goodbye," + myChatbot.getUserName() + "it has a pleasure to talk with you");
+		System.exit(0);
+	}
+	
+	public Chatbot getChatbot()
+	{
+		return myChatbot;
+	}
+	
+	public ChatView getChatView()
+	{
+		return myDisplay;
+	}
+	
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
 	}
 }

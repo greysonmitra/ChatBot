@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class Chatbot
 {
 	private ArrayList<String> memesList;
-	private ArrayList<String> politicalTopicsList;
+	private ArrayList<String> politicalTopicList;
 	private String userName;
 	private String content;
 	
 	public Chatbot()
 	{
 		memesList = new ArrayList<String>();
-		politicalTopicsList = new ArrayList<String>();
+		politicalTopicList = new ArrayList<String>();
 		userName = new String();
 		content = new String();
 	}
@@ -31,12 +31,27 @@ public class Chatbot
 	public Chatbot(String userName)
 	{
 		this.memesList = new ArrayList<String>();
-		this.politicalTopicsList = new ArrayList<String>();
+		this.politicalTopicList = new ArrayList<String>();
 		this.userName = userName;
 		this.content = "Music";
 		
 		buildMemesList();
-		buildPoliticalTopicsList();
+		buildPoliticalTopicList();
+	}
+	
+
+	public boolean quitChecker(String currentInput)
+	{
+		boolean hasQuit = false;
+		
+		if(currentInput.equals("quit"))
+		{
+			hasQuit = true;
+		}
+		
+		
+		return hasQuit;
+		
 	}
 
 /**
@@ -56,27 +71,43 @@ public class Chatbot
 		
 	}
 	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean hasMash = false;
+		
+		if(currentInput != null)
+		{
+			if(currentInput.equals("sdf")||currentInput.equals("derf")||currentInput.equals("dfg")||currentInput.equals("S.D.F")||currentInput.equals("cvb")||currentInput.equals(",./"))
+			{
+				hasMash = true;
+			}
+		}
+		
+		return hasMash;
+		
+	}
+	
 /**
  * Initializes our Political topic ArrayList with our political topic objects	
  */
-	private void buildPoliticalTopicsList()
+	private void buildPoliticalTopicList()
 	{
-		this.politicalTopicsList.add("election");
-		this.politicalTopicsList.add("Sanders");
-		this.politicalTopicsList.add("Trump");
-		this.politicalTopicsList.add("Fiorina");
-		this.politicalTopicsList.add("Carson");
-		this.politicalTopicsList.add("Clinton");
-		this.politicalTopicsList.add("Christie");
-		this.politicalTopicsList.add("Bush");
-		this.politicalTopicsList.add("Liberal");
-		this.politicalTopicsList.add("Conservative");
-		this.politicalTopicsList.add("Republican");
-		this.politicalTopicsList.add("Democrat");
-		this.politicalTopicsList.add("vote");
-		this.politicalTopicsList.add("primary");
-		this.politicalTopicsList.add("President");
-		
+		this.politicalTopicList.add("election");
+		this.politicalTopicList.add("Sanders");
+		this.politicalTopicList.add("Trump");
+		this.politicalTopicList.add("Fiorina");
+		this.politicalTopicList.add("Carson");
+		this.politicalTopicList.add("Clinton");
+		this.politicalTopicList.add("Christie");
+		this.politicalTopicList.add("Bush");
+		this.politicalTopicList.add("Liberal");
+		this.politicalTopicList.add("Conservative");
+		this.politicalTopicList.add("Republican");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("vote");
+		this.politicalTopicList.add("primary");
+		this.politicalTopicList.add("President");
+		this.politicalTopicList.add("11/4/16");
 		
 	}
 	
@@ -136,7 +167,7 @@ public class Chatbot
 	{
 		boolean hasPolitics = false;
 		
-		for(String politics: politicalTopicsList)
+		for(String politics: politicalTopicList)
 		{
 			if(currentInput.toLowerCase().contains(politics.toLowerCase()))
 			{
@@ -255,7 +286,7 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
 	
 	/**
