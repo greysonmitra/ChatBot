@@ -1,8 +1,7 @@
 package chat.view;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 
@@ -23,10 +22,10 @@ public class ChatPanel extends JPanel
 		
 		baseLayout = new SpringLayout();
 		chatArea = new JTextArea(10,20);
-		chatButton = new JButton("Chat button");
-		chatField = new JTextField("words can be typed here");
-		chatLabel = new JLabel("CHATBOOTY");
-	
+		chatButton = new JButton("Chat submit");
+		chatField = new JTextField(20);
+		chatLabel = new JLabel("CHAT TIME");
+		
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -44,6 +43,7 @@ public class ChatPanel extends JPanel
 		this.add(chatField);
 		this.add(chatLabel);
 		chatField.setToolTipText("Type here to chat");
+		chatArea.setEnabled(false);
 	}
 	
 	/**
@@ -56,21 +56,57 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -40, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatField, 42, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -22, SpringLayout.NORTH, chatButton);
-		baseLayout.putConstraint(SpringLayout.WEST, chatLabel, 178, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatLabel, -155, SpringLayout.NORTH, chatField);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatLabel, 0, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatLabel, 171, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatArea, -17, SpringLayout.NORTH, chatField);
+		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 44, SpringLayout.WEST, this);
+	
 	}
 	
 	private void setupListeners()
 	{
-		{
 			chatButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent click)
 				{
-					chatField.setText("Wow, you managed a click event! Wow!!!!!!!!");
-				}
+					//Need to do this method
+					//Grabe user answer
+					//display answer
+					//send text to Bot
+					//chatbot process and dsiplay response
+					
+					String userText = chatField.getText(); //Grabe user answer
+					chatArea.append("\nUser: " + userText); //display answer
+					chatField.setText(""); 
+					String response = baseController.userToChatbot(userText); //send text to Bot //chatbot process and display response
+					chatArea.append("\nChatbot: " + response); //display the response
+				}	
 			});
-		}
+			
+		this.addKeyListener(new KeyListener()
+		{
+			public void keyTyped(KeyEvent Enter)
+			{
+				
+			}
+
+			public void keyPressed(KeyEvent Enter)
+			{
+				String userText = chatField.getText();
+				chatArea.append("\nUser: " + userText); 
+				chatField.setText(""); 
+				String response = baseController.userToChatbot(userText); 
+				chatArea.append("\nChatbot: " + response); 
+				
+			}
+
+			
+			public void keyReleased(KeyEvent enter)
+			{
+				
+				
+			}
+		});
 	}
 	
 	public JTextField getTextField()

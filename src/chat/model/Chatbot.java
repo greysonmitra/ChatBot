@@ -61,13 +61,14 @@ public class Chatbot
 	{
 		this.memesList.add("cute animals");
 		this.memesList.add("doge");
-		this.memesList.add("Me gusta/Y U NO");
+		this.memesList.add("Me gusta");
 		this.memesList.add("spodermen");
 		this.memesList.add("Rare Pepe"); //wOOOOOOOOOOOOOOOOOOOOO
 		this.memesList.add("What if I told you...");
 		this.memesList.add("Aliens");
 		memesList.add("Unhelpful High School Teacher"); // can do it this way if ya want
 		this.memesList.add("Trollface");
+		this.memesList.add("Y U NO");
 		
 	}
 	
@@ -77,7 +78,7 @@ public class Chatbot
 		
 		if(currentInput != null)
 		{
-			if(currentInput.equals("sdf")||currentInput.equals("derf")||currentInput.equals("dfg")||currentInput.equals("S.D.F")||currentInput.equals("cvb")||currentInput.equals(",./"))
+			if(currentInput.equals("sdf")||currentInput.equals("ferd")||currentInput.equals("dfg")||currentInput.equals("SDF")||currentInput.equals("cvb")||currentInput.equals(",./"))
 			{
 				hasMash = true;
 			}
@@ -213,6 +214,11 @@ public class Chatbot
 		String nextTopic = "Well what else do ya want to chat about mayn?";
 		int randomTopic = (int) (Math.random() * 5); //Generates a random number between 0 and 4.
 		
+		if(keyboardMashChecker(currentInput))
+		{
+			return "stop mashing the keyboard!!!!!";
+		}
+		
 		switch (randomTopic)
 		{
 		case 0:
@@ -220,11 +226,19 @@ public class Chatbot
 			{
 				nextTopic = "Quite the interesting meme sir. What else would you like to chat about?";
 			}
+			else
+			{
+				nextTopic = "Want to talk about dank Memes?";
+			}
 			break;
 		case 1:
 			if(politicalTopicChecker(currentInput))
 			{
 				nextTopic = "Quite the widely debated political topic you have there. Would you like to continue talking about politics?";
+			}
+			else
+			{
+				nextTopic = "Don't you want to talk about Politics?";
 			}
 			break;
 		case 2:
@@ -234,7 +248,7 @@ public class Chatbot
 			}
 			else
 			{
-				nextTopic = "failed content check for content";
+				nextTopic = "I wanted to talk about my special Content...";
 			}
 			break;
 		case 3:
@@ -289,12 +303,13 @@ public class Chatbot
 		return politicalTopicList;
 	}
 	
+	
 	/**
 	 * Updates the content area for this Chatbot instance.
 	 * @param content The updated value for the content area.
 	 */
 	public void setContent(String content)
 	{
-		
+		this.content = content;
 	}
 }

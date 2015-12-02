@@ -41,9 +41,9 @@ public class ChatbotController
 	private void chat()
 	{
 		String conversation = myDisplay.grabText("What's on ya mind, yo?");
-		while(myChatbot.lengthChecker(conversation))
-		{
-			conversation = myDisplay.grabText(myChatbot.processConversation(conversation));
+	//	while(myChatbot.lengthChecker(conversation))
+	//	{
+	//		conversation = myDisplay.grabText(myChatbot.processConversation(conversation));
 			
 //			if(myChatbot.contentChecker(conversation))
 //			{
@@ -71,12 +71,24 @@ public class ChatbotController
 	
 			
 //			conversation = myDisplay.grabText(conversation);
-		}
 	}
+		
+		public String userToChatbot(String userText)
+		{
+			String response = "";
+			if(myChatbot.quitChecker(userText))
+			{
+				shutDown();
+			}
+			response = myChatbot.processConversation(userText);
+			
+			return response;
+		}
+	
 	
 	private void shutDown()
 	{
-		myDisplay.displayText("Goodbye," + myChatbot.getUserName() + "it has a pleasure to talk with you");
+		myDisplay.displayText("Goodbye," + myChatbot.getUserName() + "it has been a pleasure to talk with you");
 		System.exit(0);
 	}
 	
