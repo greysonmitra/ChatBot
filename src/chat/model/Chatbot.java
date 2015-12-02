@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part. NOT ANY MORE
  * of the project.
  * @author Greyson Mitra
- * @version 1.5 11/5/15 Completed multiple methods for checking various topics/
+ * @version 1.6 12/2/15 Tests pass and made GUI work better.
  */
 
 public class Chatbot
