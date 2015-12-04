@@ -6,20 +6,20 @@ import java.util.ArrayList;
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part. NOT ANY MORE
  * of the project.
  * @author Greyson Mitra
- * @version 1.5 11/5/15 Completed multiple methods for checking various topics/
+ * @version 1.6 12/2/15 Tests pass and made GUI work better.
  */
 
 public class Chatbot
 {
 	private ArrayList<String> memesList;
-	private ArrayList<String> politicalTopicsList;
+	private ArrayList<String> politicalTopicList;
 	private String userName;
 	private String content;
 	
 	public Chatbot()
 	{
 		memesList = new ArrayList<String>();
-		politicalTopicsList = new ArrayList<String>();
+		politicalTopicList = new ArrayList<String>();
 		userName = new String();
 		content = new String();
 	}
@@ -31,12 +31,27 @@ public class Chatbot
 	public Chatbot(String userName)
 	{
 		this.memesList = new ArrayList<String>();
-		this.politicalTopicsList = new ArrayList<String>();
+		this.politicalTopicList = new ArrayList<String>();
 		this.userName = userName;
 		this.content = "Music";
 		
 		buildMemesList();
-		buildPoliticalTopicsList();
+		buildPoliticalTopicList();
+	}
+	
+
+	public boolean quitChecker(String currentInput)
+	{
+		boolean hasQuit = false;
+		
+		if(currentInput.equals("quit"))
+		{
+			hasQuit = true;
+		}
+		
+		
+		return hasQuit;
+		
 	}
 
 /**
@@ -46,37 +61,54 @@ public class Chatbot
 	{
 		this.memesList.add("cute animals");
 		this.memesList.add("doge");
-		this.memesList.add("Me gusta/Y U NO");
+		this.memesList.add("Me gusta");
 		this.memesList.add("spodermen");
 		this.memesList.add("Rare Pepe"); //wOOOOOOOOOOOOOOOOOOOOO
 		this.memesList.add("What if I told you...");
 		this.memesList.add("Aliens");
 		memesList.add("Unhelpful High School Teacher"); // can do it this way if ya want
 		this.memesList.add("Trollface");
+		this.memesList.add("Y U NO");
+		
+	}
+	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean hasMash = false;
+		
+		if(currentInput != null)
+		{
+			if(currentInput.equals("sdf")||currentInput.equals("ferd")||currentInput.equals("dfg")||currentInput.equals("SDF")||currentInput.equals("cvb")||currentInput.equals(",./"))
+			{
+				hasMash = true;
+			}
+		}
+		
+		return hasMash;
 		
 	}
 	
 /**
  * Initializes our Political topic ArrayList with our political topic objects	
  */
-	private void buildPoliticalTopicsList()
+	private void buildPoliticalTopicList()
 	{
-		this.politicalTopicsList.add("election");
-		this.politicalTopicsList.add("Sanders");
-		this.politicalTopicsList.add("Trump");
-		this.politicalTopicsList.add("Fiorina");
-		this.politicalTopicsList.add("Carson");
-		this.politicalTopicsList.add("Clinton");
-		this.politicalTopicsList.add("Christie");
-		this.politicalTopicsList.add("Bush");
-		this.politicalTopicsList.add("Liberal");
-		this.politicalTopicsList.add("Conservative");
-		this.politicalTopicsList.add("Republican");
-		this.politicalTopicsList.add("Democrat");
-		this.politicalTopicsList.add("vote");
-		this.politicalTopicsList.add("primary");
-		this.politicalTopicsList.add("President");
-		
+		this.politicalTopicList.add("election");
+		this.politicalTopicList.add("Sanders");
+		this.politicalTopicList.add("Trump");
+		this.politicalTopicList.add("Fiorina");
+		this.politicalTopicList.add("Carson");
+		this.politicalTopicList.add("Clinton");
+		this.politicalTopicList.add("Christie");
+		this.politicalTopicList.add("Bush");
+		this.politicalTopicList.add("Liberal");
+		this.politicalTopicList.add("Conservative");
+		this.politicalTopicList.add("Republican");
+		this.politicalTopicList.add("Democrat");
+		this.politicalTopicList.add("vote");
+		this.politicalTopicList.add("primary");
+		this.politicalTopicList.add("President");
+		this.politicalTopicList.add("11/4/16");
 		
 	}
 	
@@ -136,7 +168,7 @@ public class Chatbot
 	{
 		boolean hasPolitics = false;
 		
-		for(String politics: politicalTopicsList)
+		for(String politics: politicalTopicList)
 		{
 			if(currentInput.toLowerCase().contains(politics.toLowerCase()))
 			{
@@ -182,6 +214,11 @@ public class Chatbot
 		String nextTopic = "Well what else do ya want to chat about mayn?";
 		int randomTopic = (int) (Math.random() * 5); //Generates a random number between 0 and 4.
 		
+		if(keyboardMashChecker(currentInput))
+		{
+			return "stop mashing the keyboard!!!!!";
+		}
+		
 		switch (randomTopic)
 		{
 		case 0:
@@ -189,11 +226,19 @@ public class Chatbot
 			{
 				nextTopic = "Quite the interesting meme sir. What else would you like to chat about?";
 			}
+			else
+			{
+				nextTopic = "Want to talk about dank Memes?";
+			}
 			break;
 		case 1:
 			if(politicalTopicChecker(currentInput))
 			{
 				nextTopic = "Quite the widely debated political topic you have there. Would you like to continue talking about politics?";
+			}
+			else
+			{
+				nextTopic = "Don't you want to talk about Politics?";
 			}
 			break;
 		case 2:
@@ -203,7 +248,7 @@ public class Chatbot
 			}
 			else
 			{
-				nextTopic = "failed content check for content";
+				nextTopic = "I wanted to talk about my special Content...";
 			}
 			break;
 		case 3:
@@ -255,8 +300,9 @@ public class Chatbot
 	 */
 	public ArrayList<String> getPoliticalTopicList()
 	{
-		return null;
+		return politicalTopicList;
 	}
+	
 	
 	/**
 	 * Updates the content area for this Chatbot instance.
@@ -264,6 +310,6 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
-		
+		this.content = content;
 	}
 }

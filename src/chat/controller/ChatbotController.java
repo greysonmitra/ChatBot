@@ -1,7 +1,8 @@
 package chat.controller;
 
-import chat.view.ChatView;
+import chat.view.*;
 import chat.model.Chatbot;
+
 
 /**
  *Application controller for the Chatbot project. 
@@ -12,6 +13,9 @@ public class ChatbotController
 {
 	private ChatView myDisplay;
 	private Chatbot myChatbot;
+	private ChatFrame baseFrame;
+	
+
 	
 	/**
 	 * Initializes different classes for running the code
@@ -21,6 +25,7 @@ public class ChatbotController
 		myDisplay = new ChatView();
 		String userName = myDisplay.grabText("What is your name?");
 		myChatbot = new Chatbot(userName);
+		baseFrame = new ChatFrame(this);
 	}
 	
 	/**
@@ -30,6 +35,7 @@ public class ChatbotController
 	{
 		myDisplay.showResponse("Hello " + myChatbot.getUserName());
 		chat();
+//		setupFrame();
 	}
 	
 	/**
@@ -38,9 +44,9 @@ public class ChatbotController
 	private void chat()
 	{
 		String conversation = myDisplay.grabText("What's on ya mind, yo?");
-		while(myChatbot.lengthChecker(conversation))
-		{
-			conversation = myDisplay.grabText(myChatbot.processConversation(conversation));
+	//	while(myChatbot.lengthChecker(conversation))
+	//	{
+	//		conversation = myDisplay.grabText(myChatbot.processConversation(conversation));
 			
 //			if(myChatbot.contentChecker(conversation))
 //			{
@@ -68,11 +74,39 @@ public class ChatbotController
 	
 			
 //			conversation = myDisplay.grabText(conversation);
-		}
 	}
+		
+		public String userToChatbot(String userText)
+		{
+			String response = "";
+			if(myChatbot.quitChecker(userText))
+			{
+				shutDown();
+			}
+			response = myChatbot.processConversation(userText);
+			
+			return response;
+		}
+	
 	
 	private void shutDown()
 	{
-//		myDisplay.displayText("Goodbye," + myChatbot.getUserName());
+		myDisplay.displayText("Goodbye " + myChatbot.getUserName() + ", it has been a pleasure to talk with you");
+		System.exit(0);
+	}
+	
+	public Chatbot getChatbot()
+	{
+		return myChatbot;
+	}
+	
+	public ChatView getChatView()
+	{
+		return myDisplay;
+	}
+	
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
 	}
 }
