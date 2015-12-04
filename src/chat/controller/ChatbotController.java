@@ -3,6 +3,7 @@ package chat.controller;
 import chat.view.*;
 import chat.model.Chatbot;
 
+
 /**
  *Application controller for the Chatbot project. 
  * @author gmit3891
@@ -13,6 +14,7 @@ public class ChatbotController
 	private ChatView myDisplay;
 	private Chatbot myChatbot;
 	private ChatFrame baseFrame;
+	
 
 	
 	/**
@@ -33,6 +35,7 @@ public class ChatbotController
 	{
 		myDisplay.showResponse("Hello " + myChatbot.getUserName());
 		chat();
+//		setupFrame();
 	}
 	
 	/**
@@ -88,7 +91,7 @@ public class ChatbotController
 	
 	private void shutDown()
 	{
-		myDisplay.displayText("Goodbye," + myChatbot.getUserName() + "it has been a pleasure to talk with you");
+		myDisplay.displayText("Goodbye " + myChatbot.getUserName() + ", it has been a pleasure to talk with you");
 		System.exit(0);
 	}
 	

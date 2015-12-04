@@ -15,7 +15,11 @@ public class ChatPanel extends JPanel
 	private SpringLayout baseLayout;
 	private JLabel chatLabel;
 	private JTextArea chatArea;
-	
+
+	/**
+	 * Initializes helper methods, panel elements, and a controller class to create a good GUI.
+	 * @param baseController
+	 */
 	public ChatPanel(ChatbotController baseController)
 	{
 		this.baseController = baseController;
@@ -63,6 +67,9 @@ public class ChatPanel extends JPanel
 	
 	}
 	
+	/**
+	 * Helper method to take in input in the form of actions from the user and initiate events based on that.
+	 */
 	private void setupListeners()
 	{
 			chatButton.addActionListener(new ActionListener()
@@ -83,7 +90,7 @@ public class ChatPanel extends JPanel
 				}	
 			});
 			
-		this.addKeyListener(new KeyListener()
+		chatField.addKeyListener(new KeyListener()      //Needs to be chatField CUZ THATS WHERE YOU TYPE NOT THE PANEL IN GENERAL AOR THE BUTTON
 		{
 			public void keyTyped(KeyEvent Enter)
 			{
@@ -92,11 +99,15 @@ public class ChatPanel extends JPanel
 
 			public void keyPressed(KeyEvent Enter)
 			{
-				String userText = chatField.getText();
-				chatArea.append("\nUser: " + userText); 
-				chatField.setText(""); 
-				String response = baseController.userToChatbot(userText); 
-				chatArea.append("\nChatbot: " + response); 
+				
+				if(Enter.VK_ENTER == Enter.getKeyCode())
+				{
+					String userText = chatField.getText();
+					chatArea.append("\nUser: " + userText); 									
+					chatField.setText(""); 
+					String response = baseController.userToChatbot(userText); 
+					chatArea.append("\nChatbot: " + response);
+				}
 				
 			}
 
