@@ -117,7 +117,7 @@ public class Chatbot
 	 * otherwise returns true. 
 	 * @param currentInput
 	 * @return A true or false based on the length of the supplied String.
-	 */
+	 */ 
 	public boolean lengthChecker(String currentInput)
 	{
 		boolean hasLength = false;
