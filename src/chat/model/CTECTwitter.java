@@ -7,7 +7,7 @@ import twitter4j.*;
 /**
  * 
  * @author gmit3891
- * @version 0.4 Can interact with the controller to send tweets and prevent errors.
+ * @version 0.4 Feb 25, 2016 Can interact with the controller to send tweets and prevent errors. Listeners for sending tweets too.
  * Writing code for interaction between our Chatbot and Twitter. 
  */
 public class CTECTwitter
