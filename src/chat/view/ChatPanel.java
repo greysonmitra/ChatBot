@@ -38,7 +38,7 @@ public class ChatPanel extends JPanel
 		tweetButton = new JButton("Tweet this");
 		saveButton = new JButton("save this");
 		loadButton = new JButton("load something");
-		textPane = new JScrollPane();            //Scroll pane helps initialize our chatarea/textarea and so you don't need to do the whole this.add and positioning stuff for chatarea/textarea.
+		textPane = new JScrollPane();            /* Scroll pane helps initialize our chatarea/textarea and so you don't need to do the whole this.add and positioning stuff for chatarea/textarea. */
 		
 		
 		setupChatPane();
@@ -110,23 +110,33 @@ public class ChatPanel extends JPanel
 	 */
 	private void setupListeners()
 	{
-			chatButton.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent click)
-				{
-					//Need to do this method
-					//Grabe user answer
-					//display answer
-					//send text to Bot
-					//chatbot process and dsiplay response
+		chatButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{	
+				//Need to do this method
+				//Grabe user answer
+				//display answer
+				//send text to Bot
+				//chatbot process and dsiplay response
 					
-					String userText = chatField.getText(); //Grabe user answer
-					chatArea.append("\nUser: " + userText); //display answer
-					chatField.setText(""); 
-					String response = baseController.userToChatbot(userText); //send text to Bot //chatbot process and display response
-					chatArea.append("\nChatbot: " + response); //display the response
-				}	
-			});
+				String userText = chatField.getText(); //Grabe user answer
+				chatArea.append("\nUser: " + userText); //display answer
+				chatField.setText(""); 
+				String response = baseController.userToChatbot(userText); //send text to Bot //chatbot process and display response
+				chatArea.append("\nChatbot: " + response); //display the response
+			}	
+		});
+			
+		tweetButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				baseController.sendTweet("no text to send");
+			}
+		});
+			
+		
 			
 		chatField.addKeyListener(new KeyListener()      //Needs to be chatField CUZ THATS WHERE YOU TYPE NOT THE PANEL IN GENERAL AOR THE BUTTON
 		{
@@ -137,7 +147,6 @@ public class ChatPanel extends JPanel
 
 			public void keyPressed(KeyEvent Enter)
 			{
-				
 				if(Enter.VK_ENTER == Enter.getKeyCode())
 				{
 					String userText = chatField.getText();
@@ -145,14 +154,11 @@ public class ChatPanel extends JPanel
 					chatField.setText(""); 
 					String response = baseController.userToChatbot(userText); 
 					chatArea.append("\nChatbot: " + response);
-				}
-				
+				}		
 			}
 
-			
 			public void keyReleased(KeyEvent enter)
 			{
-				
 				
 			}
 		});

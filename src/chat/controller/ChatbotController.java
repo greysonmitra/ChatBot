@@ -2,6 +2,7 @@ package chat.controller;
 
 import chat.view.*;
 import chat.model.Chatbot;
+import chat.model.CTECTwitter;
 
 
 /**
@@ -11,11 +12,11 @@ import chat.model.Chatbot;
  */
 public class ChatbotController
 {
+	private CTECTwitter chatTwitter;
 	private ChatView myDisplay;
 	private Chatbot myChatbot;
 	private ChatFrame baseFrame;
 	
-
 	
 	/**
 	 * Initializes different classes for running the code
@@ -26,6 +27,7 @@ public class ChatbotController
 		String userName = myDisplay.grabText("What is your name?");
 		myChatbot = new Chatbot(userName);
 		baseFrame = new ChatFrame(this);
+		chatTwitter = new CTECTwitter(this);
 	}
 	
 	/**
@@ -82,23 +84,35 @@ public class ChatbotController
 //			conversation = myDisplay.grabText(conversation);
 	}
 		
-		public String userToChatbot(String userText)
+	
+	public String userToChatbot(String userText)
+	{
+		String response = "";
+		if(myChatbot.quitChecker(userText))
 		{
-			String response = "";
-			if(myChatbot.quitChecker(userText))
-			{
-				shutDown();
-			}
-			response = myChatbot.processConversation(userText);
-			
-			return response;
+			shutDown();
 		}
+		response = myChatbot.processConversation(userText);
+			
+		return response;
+	}
 	
 	
 	private void shutDown()
 	{
 		myDisplay.displayText("Goodbye " + myChatbot.getUserName() + ", it has been a pleasure to talk with you");
 		System.exit(0);
+	}
+	
+	public void sendTweet(String wordList)
+	{
+		chatTwitter.sendTweet(wordList);
+		
+	}
+	
+	public void handleErrors(String errorMessage)
+	{
+		myDisplay.displayText(errorMessage);
 	}
 	
 	public Chatbot getChatbot()
