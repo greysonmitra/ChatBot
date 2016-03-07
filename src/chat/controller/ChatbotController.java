@@ -44,6 +44,12 @@ public class ChatbotController
 	private void chat()
 	{
 		String conversation = myDisplay.grabText("What's on ya mind, yo?");
+		while(myChatbot.lengthChecker(conversation))
+		{
+			conversation = myChatbot.processConversation(conversation);
+			conversation = myDisplay.grabText(conversation);
+		}
+		
 	//	while(myChatbot.lengthChecker(conversation))
 	//	{
 	//		conversation = myDisplay.grabText(myChatbot.processConversation(conversation));

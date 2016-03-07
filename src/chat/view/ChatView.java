@@ -40,7 +40,7 @@ public class ChatView
 	{
 		String returnedText = "";
 		
-		returnedText = JOptionPane.showInputDialog(null, displayText, popupMessage, JOptionPane.PLAIN_MESSAGE, chatbotIcon, null, "Answer here") + ""; ;
+		returnedText = JOptionPane.showInputDialog(null, displayText, popupMessage, JOptionPane.PLAIN_MESSAGE, chatbotIcon, null, "Answer here") + ""; 
 		
 		return returnedText;
 	}
