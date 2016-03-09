@@ -57,6 +57,9 @@ public class ChatPanel extends JPanel
 		chatArea.setEditable(false);
 		textPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		textPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		
+		chatArea.getText();
 	}
 	
 	/**
@@ -167,5 +170,10 @@ public class ChatPanel extends JPanel
 	public JTextField getTextField()
 	{
 		return chatField;
+	}
+	
+	public String getChatAreaText()
+	{
+		return chatArea.getText();
 	}
 }
