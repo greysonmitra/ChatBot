@@ -226,30 +226,30 @@ public class Chatbot
 			{
 				nextTopic = "Quite the interesting meme sir. What else would you like to chat about?";
 			}
-			else
+	/*		else
 			{
 				nextTopic = "Want to talk about dank Memes?";
-			}
+			}   */
 			break;
 		case 1:
 			if(politicalTopicChecker(currentInput))
 			{
 				nextTopic = "Quite the widely debated political topic you have there. Would you like to continue talking about politics?";
 			}
-			else
+	/*		else
 			{
 				nextTopic = "Don't you want to talk about Politics?";
-			}
+			}	*/
 			break;
 		case 2:
 			if(contentChecker(currentInput))
 			{
 				nextTopic = "Cool. What other musical things do you want to talk about?";
 			}
-			else
+	/*		else
 			{
 				nextTopic = "I wanted to talk about my special Content...";
-			}
+			}     */
 			break;
 		case 3:
 //			if(currentInput.length() > 40)

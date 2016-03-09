@@ -9,7 +9,7 @@ import chat.view.*;
 
 public class IOController 
 {
-	public void pwChatAreaText()
+	public void save(String textToSave)
 	{		
 		try 
 		{
@@ -17,7 +17,7 @@ public class IOController
 		
 				FileWriter fw = new FileWriter(input,true);
 				PrintWriter pw = new PrintWriter(fw);
-				pw.print(getChatAreaText());
+				pw.print(textToSave);
 				pw.close();
 		}
 		catch(IOException exception)

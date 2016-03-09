@@ -143,7 +143,7 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				baseController.getIO().save(chatArea.getText());
 			}
 		});
 			

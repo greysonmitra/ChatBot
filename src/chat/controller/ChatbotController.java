@@ -16,6 +16,7 @@ public class ChatbotController
 	private ChatView myDisplay;
 	private Chatbot myChatbot;
 	private ChatFrame baseFrame;
+	private IOController saver;
 	
 	
 	/**
@@ -28,15 +29,18 @@ public class ChatbotController
 		myChatbot = new Chatbot(userName);
 		baseFrame = new ChatFrame(this);
 		chatTwitter = new CTECTwitter(this);
+		saver = new IOController();
 	}
 	
+
+
 	/**
 	 * Starts code and presents output for the user
 	 */
 	public void start()
 	{
 		myDisplay.showResponse("Hello " + myChatbot.getUserName());
-		chat();
+	//	chat();
 //		setupFrame();
 	}
 	
@@ -128,5 +132,10 @@ public class ChatbotController
 	public ChatFrame getBaseFrame()
 	{
 		return baseFrame;
+	}
+	
+	public IOController getIO()
+	{
+		return saver;
 	}
 }
