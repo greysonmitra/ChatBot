@@ -138,6 +138,14 @@ public class ChatPanel extends JPanel
 				baseController.sendTweet("no text to send");
 			}
 		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
 			
 		
 			
@@ -172,8 +180,8 @@ public class ChatPanel extends JPanel
 		return chatField;
 	}
 	
-	public String getChatAreaText()
+	public void getChatAreaText() //Trying to use a method so that IOController can access chatArea. How would I actually do that?????
 	{
-		return chatArea.getText();
+		String bigolchat = chatArea.getText();
 	}
 }
