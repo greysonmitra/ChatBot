@@ -46,6 +46,42 @@ public class CTECTwitter
 		}
 	}
 	
+	public void loadTweets(String twitterHandle) throws TwitterException
+	{
+		Paging statusPage = new Paging(1, 200);
+		int page = 1;
+		
+		while(page <= 10)
+		{
+			statusPage.setPage(page);
+			statuses.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage));
+			page++;
+		}
+		for(Status currentStatus : statuses)
+		{
+			String[] tweetText = currentStatus.getText().split(" ");   //The split method says to make a new array element after each space. this guarantees that each separate word in a tweet acts as an element.
+			for(String word : tweetText)
+			{
+				tweetText.add(removePunctuation(word).toLowerCase());
+			}
+			removeCommonEnglishWords(tweetTexts);
+			removeEmptyText();
+		}
+	}
 	
+	private void removeEmptyText()
+	{
+		
+	}
+	
+	private List removeCommonEnglishWords(List<String> wordList)
+	{
+		return null;
+	}
+	
+	private String removePunctuation(String currentString)
+	{
+		return null;
+	}
 	
 }
