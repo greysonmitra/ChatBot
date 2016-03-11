@@ -1,6 +1,8 @@
 package chat.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import chat.controller.*;
 import twitter4j.*;
 
@@ -54,17 +56,17 @@ public class CTECTwitter
 		while(page <= 10)
 		{
 			statusPage.setPage(page);
-			statuses.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage));
+			statusList.addAll(chatbotTwitter.getUserTimeline(twitterHandle, statusPage));
 			page++;
 		}
-		for(Status currentStatus : statuses)
+		for(Status currentStatus : statusList)
 		{
 			String[] tweetText = currentStatus.getText().split(" ");   //The split method says to make a new array element after each space. this guarantees that each separate word in a tweet acts as an element.
 			for(String word : tweetText)
 			{
-				tweetText.add(removePunctuation(word).toLowerCase());
+				wordList.add(removePunctuation(word).toLowerCase());
 			}
-			removeCommonEnglishWords(tweetTexts);
+			removeCommonEnglishWords(wordList);
 			removeEmptyText();
 		}
 	}
