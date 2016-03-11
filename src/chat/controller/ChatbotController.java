@@ -40,7 +40,7 @@ public class ChatbotController
 	public void start()
 	{
 		myDisplay.showResponse("Hello " + myChatbot.getUserName());
-	//	chat();
+//		chat();
 //		setupFrame();
 	}
 	
@@ -106,6 +106,13 @@ public class ChatbotController
 	{
 		myDisplay.displayText("Goodbye " + myChatbot.getUserName() + ", it has been a pleasure to talk with you");
 		System.exit(0);
+	}
+	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The Twitter user " + userName + "has ...";
+		
+		return userAnalysis;
 	}
 	
 	public void sendTweet(String wordList)
