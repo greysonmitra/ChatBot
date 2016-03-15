@@ -71,9 +71,16 @@ public class CTECTwitter
 		}
 	}
 	
-	private void removeEmptyText()
+	private void removeEmptyText()								//Basically the method works to loop through our list to check if each element .equals something. It removes it if it does equal.
 	{
-		
+		for(int spot = 0; spot < wordList.size(); spot++)
+		{
+			if (wordList.get(spot).equals(""))
+			{
+				wordList.remove(spot);			
+				spot--;							//This line exists because, when removing, a list shifts up one, but the loop keeps going and skips one, so we must decrement so that we can get all the elements
+			}
+		}
 	}
 	
 	private List removeCommonEnglishWords(List<String> wordList)
