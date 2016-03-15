@@ -1,10 +1,10 @@
 package chat.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import chat.controller.*;
+import java.io.*;
+import java.util.*;
 import twitter4j.*;
+
+import chat.controller.ChatbotController;
 
 /**
  * 
@@ -48,6 +48,36 @@ public class CTECTwitter
 		}
 	}
 	
+	public String topResults()
+	{
+		String tweetResults = " ";
+		
+		int topWordLocation = 0;
+		int topCount = 0;
+		
+		for(int index = 0; index < wordList.size(); index++)
+		{
+			int wordUseCount = 1;
+			
+			for(int spot = index + 1; spot < wordList.size(); spot++)
+			{
+				if(wordList.get(index).equals(wordList.get(index)))
+				{
+					wordUseCount++;
+				}
+				if(wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+		
+		tweetResults = "The top word in the tweet was " + wordList.get(topWordLocation) + " and it was used " + topCount + " times.";
+		
+		return tweetResults;
+	}
+	
 	public void loadTweets(String twitterHandle) throws TwitterException
 	{
 		Paging statusPage = new Paging(1, 200);
@@ -81,6 +111,35 @@ public class CTECTwitter
 				spot--;							//This line exists because, when removing, a list shifts up one, but the loop keeps going and skips one, so we must decrement so that we can get all the elements
 			}
 		}
+	}
+	
+	private String[] importWordsToArray()
+	{
+		String[] boringWords;
+		int wordCount = 0;
+		try
+		{
+			Scanner wordFile = new Scanner(new File("commonWords.txt"));
+			while(wordFile.hasNext())
+			{
+				wordCount++;
+				wordFile.next();
+			}
+			wordFile.reset();
+			boringWords = new String[wordCount];
+			int boringWordCount = 0;
+			while(wordFile.hasNext())
+			{
+				boringWords[boringWordCount] = wordFile.next();
+				boringWordCount++;
+			}
+			wordFile.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			return new String[0];
+		}
+		return boringWords;
 	}
 	
 	private List removeCommonEnglishWords(List<String> wordList)
