@@ -83,14 +83,14 @@ public class CTECTwitter
 	
 	private String removePunctuation(String currentString)
 	{
-		String punctuation = ",.'!?/;:{}[]()^<>-";
+		String punctuation = ",.'!?\";:{}[]()^<>-";
 		
 		String scrubbedString = "";
 		for(int i = 0; i < currentString.length(); i++)
 		{
-			if(punctuation.indexOf(currentString.charAt(i)) == -1)
+			if(punctuation.indexOf(currentString.charAt(i)) == -1) //takes the char (the character) at the point i of the index of the string. This takes it when there is no punctuation and ...
 			{
-				scrubbedString += currentString.charAt(i);
+				scrubbedString += currentString.charAt(i);       //... this line puts it back together into scrubbed string.
 			}
 		}
 		
