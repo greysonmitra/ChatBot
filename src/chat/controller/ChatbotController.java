@@ -1,8 +1,10 @@
 package chat.controller;
 
-import chat.view.*;
-import chat.model.Chatbot;
+import twitter4j.TwitterException;
 import chat.model.CTECTwitter;
+import chat.model.Chatbot;
+import chat.view.ChatFrame;
+import chat.view.ChatView;
 
 
 /**
@@ -108,23 +110,34 @@ public class ChatbotController
 		System.exit(0);
 	}
 	
+	
+	
 	public String analyze(String userName)
 	{
-		String userAnalysis = "The Twitter user " + userName + "has ...";
-		
+		String userAnalysis = "The Twitter user " + userName + " has many tweets. ";		//This method takes the username, analyzes it using all those methods in the CTECTwitter
+		try																				//class, specifically calling the topResults method.
+		{
+			chatTwitter.loadTweets(userName);																	
+		}
+		catch (TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		userAnalysis += chatTwitter.topResults();
 		return userAnalysis;
 	}
 	
 	public void sendTweet(String wordList)
 	{
-		chatTwitter.sendTweet(wordList);
-		
+		chatTwitter.sendTweet(wordList);	
 	}
 	
 	public void handleErrors(String errorMessage)
 	{
 		myDisplay.displayText(errorMessage);
 	}
+	
+	
 	
 	public Chatbot getChatbot()
 	{

@@ -148,8 +148,8 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				String user = chatField.getText();
-				String results = baseController.analyze(user);
+				String user = chatField.getText();		//Takes whatever is entered into the chatField and sets that as the desired user you are analyzing.
+				String results = baseController.analyze(user);  //Goes to the controller and the analyze method inside of it. Does so for a "user." This is all displayed in the chatArea.
 				chatArea.setText(results);
 			}
 		});
