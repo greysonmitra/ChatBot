@@ -183,17 +183,17 @@ public class CTECTwitter
 	{
 		String results = "";
 		
-		Query query = new Query("hairy");
+		Query query = new Query("music");
 		query.setCount(100);
-		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 5, Query.MILES);
+		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 1000, Query.KILOMETERS);
 		query.setSince("2016-1-1");
 		try
 		{
 			QueryResult result = chatbotTwitter.search(query);
-			results.concat("Count : " + result.getTweets().size());
+			results += ("Count : " + result.getTweets().size() + "\n" + "\n" + "\n");
 			for(Status tweet : result.getTweets())
 			{
-				results.concat("@" + tweet.getUser().getName() + ": " + tweet.getText() + "/n");
+				results += (" @" + tweet.getUser().getName() + ": " + tweet.getText() + "\n" + "\n");
 			}
 		}
 		catch(TwitterException error)

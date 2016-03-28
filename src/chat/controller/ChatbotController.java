@@ -127,6 +127,13 @@ public class ChatbotController
 		return userAnalysis;
 	}
 	
+	public String investigate()
+	{
+		String twitterResults = chatTwitter.sampleInvestigation();
+		
+		return twitterResults;
+	}
+	
 	public void sendTweet(String wordList)
 	{
 		chatTwitter.sendTweet(wordList);	

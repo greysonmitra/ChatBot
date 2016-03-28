@@ -20,6 +20,7 @@ public class ChatPanel extends JPanel
 	private JButton saveButton;
 	private JButton loadButton;
 	private JButton analyzeTwitterButton;
+	private JButton twitterInvestigationButton;
 
 	/**
 	 * Initializes helper methods, panel elements, and a controller class to create a good GUI.
@@ -40,7 +41,8 @@ public class ChatPanel extends JPanel
 		loadButton = new JButton("load something");
 		textPane = new JScrollPane();            /* Scroll pane helps initialize our chatarea/textarea and so you don't need to do the whole this.add and positioning stuff for chatarea/textarea. */
 		analyzeTwitterButton = new JButton("Get some Tweets");
-		
+		twitterInvestigationButton = new JButton("Investigate tweets");
+
 		
 		setupChatPane();
 		setupPanel();
@@ -78,6 +80,7 @@ public class ChatPanel extends JPanel
 		this.add(saveButton);
 		this.add(loadButton);
 		this.add(analyzeTwitterButton);
+		this.add(twitterInvestigationButton);
 		chatField.setToolTipText("Type here to chat");
 		chatArea.setEnabled(false);
 		this.setPreferredSize(new Dimension(500, 500));
@@ -111,6 +114,9 @@ public class ChatPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, promptLabel, 0, SpringLayout.WEST, chatField);
 		baseLayout.putConstraint(SpringLayout.SOUTH, promptLabel, -64, SpringLayout.NORTH, chatField);
 		baseLayout.putConstraint(SpringLayout.EAST, chatButton, 0, SpringLayout.EAST, textPane);
+		baseLayout.putConstraint(SpringLayout.NORTH, twitterInvestigationButton, 0, SpringLayout.NORTH, analyzeTwitterButton);
+		baseLayout.putConstraint(SpringLayout.WEST, twitterInvestigationButton, 16, SpringLayout.EAST, analyzeTwitterButton);
+		
 	}
 	
 	/**
@@ -128,6 +134,7 @@ public class ChatPanel extends JPanel
 				//send text to Bot
 				//chatbot process and dsiplay response
 					
+			
 				String userText = chatField.getText(); //Grabe user answer
 				chatArea.append("\nUser: " + userText); //display answer
 				chatField.setText(""); 
@@ -150,6 +157,15 @@ public class ChatPanel extends JPanel
 			{
 				String user = chatField.getText();		//Takes whatever is entered into the chatField and sets that as the desired user you are analyzing.
 				String results = baseController.analyze(user);  //Goes to the controller and the analyze method inside of it. Does so for a "user." This is all displayed in the chatArea.
+				chatArea.setText(results);
+			}
+		});
+		
+		twitterInvestigationButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String results = baseController.investigate();
 				chatArea.setText(results);
 			}
 		});
